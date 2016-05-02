@@ -38,7 +38,18 @@ var symbols = [
   }
 ];
 
+var min = 1;
+var max = 3999;
+
 exports.generate = function(input) {
+  if((input | 0) !== input) {
+    throw "Invalid input type"
+  }
+
+  if(input < min || input > max) {
+    throw "Input out of range"
+  }
+
   return generator(input, "");
 };
 
