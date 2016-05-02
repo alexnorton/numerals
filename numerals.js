@@ -87,7 +87,13 @@ var generator = function(input, result) {
 };
 
 exports.parse = function(input) {
-  return parser(input, 0);
+  var result = parser(input, 0);
+
+  if(result < min || result > max) {
+    throw "Numeral value out of range";
+  }
+
+  return result;
 };
 
 var parser = function(input, result) {
