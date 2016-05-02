@@ -4,5 +4,8 @@
   "description": "A roman numeral to/from integer converter",
   "devDependencies": {
     "jasmine": "^2.4.1"
+  },
+  "scripts": {
+    "test": "node_modules/jasmine/bin/jasmine.js"
   }
 }
