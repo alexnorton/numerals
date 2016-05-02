@@ -17,23 +17,23 @@ describe("numerals", function() {
     });
 
     it("should not accept out of range integers", function() {
-      expect(numerals.generate(-1000)).toThrow();
-      expect(numerals.generate(-1)).toThrow();
-      expect(numerals.generate(0)).toThrow();
-      expect(numerals.generate(4000)).toThrow();
-      expect(numerals.generate(999999999)).toThrow();
+      expect(function() { numerals.generate(-1000) }).toThrow();
+      expect(function() { numerals.generate(-1) }).toThrow();
+      expect(function() { numerals.generate(0) }).toThrow();
+      expect(function() { numerals.generate(4000) }).toThrow();
+      expect(function() { numerals.generate(999999999) }).toThrow();
     });
 
     it("should not accept non-integers", function() {
-      expect(numerals.generate("Alex")).toThrow();
-      expect(numerals.generate("B")).toThrow();
-      expect(numerals.generate("🐳")).toThrow();
-      expect(numerals.generate(true)).toThrow();
-      expect(numerals.generate(false)).toThrow();
-      expect(numerals.generate(null)).toThrow();
-      expect(numerals.generate(12.4)).toThrow();
-      expect(numerals.generate(3.14159265359)).toThrow();
-      expect(numerals.generate("🐳")).toThrow();
+      expect(function() { numerals.generate("Alex") }).toThrow();
+      expect(function() { numerals.generate("B") }).toThrow();
+      expect(function() { numerals.generate("🐳") }).toThrow();
+      expect(function() { numerals.generate(true) }).toThrow();
+      expect(function() { numerals.generate(false) }).toThrow();
+      expect(function() { numerals.generate(null) }).toThrow();
+      expect(function() { numerals.generate(12.4) }).toThrow();
+      expect(function() { numerals.generate(3.14159265359) }).toThrow();
+      expect(function() { numerals.generate("🐳") }).toThrow();
     });
   });
 
