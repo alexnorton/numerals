@@ -86,4 +86,33 @@ var generator = function(input, result) {
   }
 };
 
-exports.parse = function() {};
+exports.parse = function(input) {
+  return parser(input, 0);
+};
+
+var parser = function(input, result) {
+  var symbol = symbols.filter(function(symbol) {
+    return symbol.symbol == input[0];
+  })[0];
+
+  if(!symbol) {
+    throw "Invalid symbol '" + input[0] + "' found"
+  }
+
+  if(symbol.canPrepend && symbol.canPrepend.includes(input[1])) {
+    var subtractee = symbols.filter(function(symbol) {
+      return symbol.symbol == input[1];
+    })[0];
+    result += subtractee.value - symbol.value;
+    input = input.substring(2);
+  } else {
+    result += symbol.value;
+    input = input.substring(1);
+  }
+
+  if(input == "") {
+    return result;
+  } else {
+    return parser(input, result);
+  }
+};
