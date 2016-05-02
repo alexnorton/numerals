@@ -1,5 +1,8 @@
 {
   "name": "numerals",
   "version": "1.0.0",
-  "description": "A roman numeral to/from integer converter"
+  "description": "A roman numeral to/from integer converter",
+  "devDependencies": {
+    "jasmine": "^2.4.1"
+  }
 }
