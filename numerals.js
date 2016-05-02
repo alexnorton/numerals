@@ -62,7 +62,7 @@ var generator = function(input, result) {
         input -= symbol.value;
         return true;
       } else {
-        var subtractor = symbols
+        return symbols
           .filter(function(subtractor) {
             return subtractor.canPrepend
               && subtractor.canPrepend.includes(symbol.symbol)
@@ -70,13 +70,12 @@ var generator = function(input, result) {
           })
           .sort(function(a, b) {
             return (symbol.value - b.value) - (symbol.value - a.value)
-          })[0];
-
-          if(subtractor) {
+          })
+          .some(function(subtractor) {
             result += subtractor.symbol + symbol.symbol;
             input -= symbol.value - subtractor.value;
             return true;
-          }
+          });
       }
     });
 
