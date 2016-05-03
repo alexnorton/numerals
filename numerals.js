@@ -65,7 +65,7 @@ var generator = function(input, result) {
         return symbols
           .filter(function(subtractor) {
             return subtractor.canSubtractFrom
-              && subtractor.canSubtractFrom.includes(symbol.symbol)
+              && subtractor.canSubtractFrom.indexOf(symbol.symbol) >= 0
               && (symbol.value - subtractor.value) <= input
           })
           .sort(function(a, b) {
@@ -105,7 +105,7 @@ var parser = function(input, result) {
     throw "Invalid symbol '" + input[0] + "' found"
   }
 
-  if(symbol.canSubtractFrom && symbol.canSubtractFrom.includes(input[1])) {
+  if(symbol.canSubtractFrom && symbol.canSubtractFrom.indexOf(input[1]) >= 0) {
     var subtractee = symbols.filter(function(symbol) {
       return symbol.symbol == input[1];
     })[0];
