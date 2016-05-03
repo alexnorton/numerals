@@ -2,7 +2,7 @@ var symbols = [
   {
     symbol: "I",
     value: 1,
-    canPrepend: [
+    canSubtractFrom: [
       "V", "X"
     ]
   },
@@ -13,7 +13,7 @@ var symbols = [
   {
     symbol: "X",
     value: 10,
-    canPrepend: [
+    canSubtractFrom: [
       "L", "C"
     ]
   },
@@ -24,7 +24,7 @@ var symbols = [
   {
     symbol: "C",
     value: 100,
-    canPrepend: [
+    canSubtractFrom: [
       "D", "M"
     ]
   },
@@ -64,8 +64,8 @@ var generator = function(input, result) {
       } else {
         return symbols
           .filter(function(subtractor) {
-            return subtractor.canPrepend
-              && subtractor.canPrepend.includes(symbol.symbol)
+            return subtractor.canSubtractFrom
+              && subtractor.canSubtractFrom.includes(symbol.symbol)
               && (symbol.value - subtractor.value) <= input
           })
           .sort(function(a, b) {
@@ -105,7 +105,7 @@ var parser = function(input, result) {
     throw "Invalid symbol '" + input[0] + "' found"
   }
 
-  if(symbol.canPrepend && symbol.canPrepend.includes(input[1])) {
+  if(symbol.canSubtractFrom && symbol.canSubtractFrom.includes(input[1])) {
     var subtractee = symbols.filter(function(symbol) {
       return symbol.symbol == input[1];
     })[0];
