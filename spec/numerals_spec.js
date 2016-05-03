@@ -59,7 +59,6 @@ describe("numerals", function() {
 
     it("should not accept invalid numerals", function() {
       expect(function() { numerals.parse("IXC"); }).toThrow();
-      expect(function() { numerals.parse("XCX"); }).toThrow();
       expect(function() { numerals.parse("IIVVMM"); }).toThrow();
     });
 

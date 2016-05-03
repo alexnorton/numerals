@@ -87,7 +87,7 @@ var generator = function(input, result) {
 };
 
 exports.parse = function(input) {
-  var result = parser(input, 0);
+  var result = parser(input, []);
 
   if(result < min || result > max) {
     throw "Numeral value out of range";
@@ -109,15 +109,21 @@ var parser = function(input, result) {
     var subtractee = symbols.filter(function(symbol) {
       return symbol.symbol == input[1];
     })[0];
-    result += subtractee.value - symbol.value;
+    result.push(subtractee.value - symbol.value);
     input = input.substring(2);
   } else {
-    result += symbol.value;
+    result.push(symbol.value);
     input = input.substring(1);
   }
 
+  if(result[result.length - 1] > result[result.length - 2]) {
+    throw "Invalid numeral input";
+  }
+
   if(input == "") {
-    return result;
+    return result.reduce(function(a, b) {
+      return a + b;
+    });
   } else {
     return parser(input, result);
   }
